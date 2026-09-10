@@ -7,7 +7,11 @@ public class Main {
 		Grid grid = new Grid(10, 6);
 		grid.display();
 		
-		System.out.println(grid.isOutOufBounds(9, 5));
+		Snake snake = new Snake(3, 3);
+		System.out.println(snake.getHead().row + ", " + snake.getHead().col);
+		snake.setDirection(Direction.DOWN);
+		snake.move();
+		System.out.println(snake.getHead().row + ", " + snake.getHead().col);
 	}
 
 }
