@@ -37,6 +37,12 @@ public class Snake {
 		
 		if(grid.isOutOufBounds(head.row, head.col))
 			return false;
+		
+		for(int i=1; i<body.size(); i++) {
+			if(body.get(i).getCol() == head.getCol() && body.get(i).getRow() == head.getRow()) {
+				return false;
+			}
+		}
 		return true;
 	}
 	public Point getHead() {
