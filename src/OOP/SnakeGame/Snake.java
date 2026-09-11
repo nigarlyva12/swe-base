@@ -45,6 +45,15 @@ public class Snake {
 		}
 		return true;
 	}
+	
+	public boolean isAt(int row, int col) {
+		for(int i=0; i<body.size(); i++) {
+			if(body.get(i).getCol() == col && body.get(i).getRow() == row) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public Point getHead() {
 		return body.getFirst();
 	}
