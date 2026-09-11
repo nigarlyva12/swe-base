@@ -1,5 +1,7 @@
 package OOP.SnakeGame;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -12,20 +14,30 @@ public class Game {
 	private Food food;
 	private Timer timer;
 	private JFrame frame;
+	private GamePanel panel;
 	
 	public Game() {
 		grid = new Grid(10,8);
 		snake = new Snake(3,3);
 		food = new Food(new Point(2,2));
-		frame = new JFrame("Snake");
-		frame.setVisible(true);
+		panel = new GamePanel(grid, snake, food);
+	    frame = new JFrame("Snake");
+	    frame.add(panel);
+	    frame.setSize(400, 320); 
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setVisible(true);
 	}
+	
 	public void start() {
 		timer = new Timer(300, e -> {
 			snake.move();
-			grid.display(snake, food);
-			System.out.print("\033[H\033[2J");
-			System.out.flush();
+			if (!snake.isAlive(grid)) {
+				timer.stop();
+			}
+			if(snake.isAt(food.getPosition().getRow(), food.getPosition().getCol())) {
+				snake.grow();
+			}
+			panel.repaint();
 		});
 		timer.start();
 		
@@ -55,4 +67,5 @@ public class Game {
 			
 		});
 	}
+	
 }
