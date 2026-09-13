@@ -62,8 +62,15 @@ public class Snake {
 		return direction;
 	}
 
-	public void setDirection(Direction direction) {
-		this.direction = direction;
+	public void setDirection(Direction newDirection) {
+		if(newDirection == Direction.DOWN && this.direction == Direction.UP)
+			return;
+		else if(newDirection == Direction.UP && this.direction == Direction.DOWN) 
+			return;
+		else if (newDirection == Direction.LEFT && this.direction == Direction.RIGHT)
+			return;
+		else if(newDirection == Direction.RIGHT && this.direction == Direction.LEFT);
+		this.direction = newDirection;
 	}
 	
 }
