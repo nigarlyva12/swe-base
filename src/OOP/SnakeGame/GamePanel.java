@@ -6,7 +6,10 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+
 public class GamePanel extends JPanel {
+	
+	private static final long serialVersionUID = 1L;
 	private Grid grid;
 	private Snake snake;
 	private Food food;
@@ -37,7 +40,31 @@ public class GamePanel extends JPanel {
 	    if (!snake.isAlive(grid)) {
 	        g.setColor(Color.RED);
 	        g.setFont(new Font("Arial", Font.BOLD, 40));
-	        g.drawString("GAME OVER", 60, grid.getHeight() * 40 / 2);
+	        g.drawString("GAME OVER", grid.getWidth()*30/2, grid.getHeight() * 40 / 2);
 	    }
+	}
+
+	public Grid getGrid() {
+		return grid;
+	}
+
+	public void setGrid(Grid grid) {
+		this.grid = grid;
+	}
+
+	public Snake getSnake() {
+		return snake;
+	}
+
+	public void setSnake(Snake snake) {
+		this.snake = snake;
+	}
+
+	public Food getFood() {
+		return food;
+	}
+
+	public void setFood(Food food) {
+		this.food = food;
 	}
 }
