@@ -24,7 +24,7 @@ public class Game {
 	private JButton resetButton;
 	
 	public Game() throws IOException {
-		grid = new Grid(20,16);
+		grid = new Grid(16,12);
 		snake = new Snake(3,3);
 		food = new Food(new Point(2,2));
 		panel = new GamePanel(grid, snake, food);
@@ -38,7 +38,7 @@ public class Game {
 	    frame = new JFrame("Snake");
 	    frame.add(panel, BorderLayout.CENTER);
 	    frame.add(resetButton, BorderLayout.SOUTH);
-	    panel.setPreferredSize(new Dimension(800, 640));
+	    panel.setPreferredSize(new Dimension(640, 480));
 	    frame.pack();
 	    frame.setLocationRelativeTo(null);
 	    ((JPanel)frame.getContentPane()).setBorder(BorderFactory.createEmptyBorder());

@@ -1,5 +1,6 @@
 package OOP.SnakeGame;
 
+import java.awt.Component;
 import java.util.LinkedList;
 
 public class Snake {
@@ -91,6 +92,12 @@ public class Snake {
 			return;
 		else if(newDirection == Direction.RIGHT && this.direction == Direction.LEFT);
 		this.direction = newDirection;
+	}
+	public LinkedList<Point> getBody() {
+		return body;
+	}
+	public void setBody(LinkedList<Point> body) {
+		this.body = body;
 	}
 	
 }

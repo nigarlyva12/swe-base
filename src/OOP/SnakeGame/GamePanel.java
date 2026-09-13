@@ -25,9 +25,8 @@ public class GamePanel extends JPanel {
 	    this.snake = snake;
 	    this.food = food;
 	    
-	    backgroundImage = ImageIO.read(new File("imgs/background.png"));
-	    foodImage = ImageIO.read(new File("imgs/apple.png"));
-	    
+	    backgroundImage = ImageIO.read(new File("imgs/bg.png"));
+	    foodImage = ImageIO.read(new File("imgs/snake_food.png"));
 	}
 	
 	@Override
@@ -41,11 +40,12 @@ public class GamePanel extends JPanel {
 	    for (int i = 0; i < grid.getHeight(); i++) {
 	        for (int j = 0; j < grid.getWidth(); j++) {
 	            if (snake.isAt(i, j)) {
-	                g.setColor(Color.BLACK);
-	            	g.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+	                g.setColor(Color.WHITE);
+	                g.fillRoundRect(j * cellSize, i * cellSize, cellSize, cellSize, 10, 10);
 	            }
-	            else if (food.getPosition().getRow() == i && food.getPosition().getCol() == j)
+	            else if (food.getPosition().getRow() == i && food.getPosition().getCol() == j) 
 	            	g.drawImage(foodImage, j * cellSize, i * cellSize, cellSize, cellSize, null);
+	            
 	            else continue;
 
 	        }
@@ -53,7 +53,7 @@ public class GamePanel extends JPanel {
 	    if (!snake.isAlive(grid)) {
 	        g.setColor(Color.RED);
 	        g.setFont(new Font("Arial", Font.BOLD, 40));
-	        g.drawString("GAME OVER", grid.getWidth()*30/2, grid.getHeight() * 40 / 2);
+	        g.drawString("GAME OVER", 0, grid.getHeight() * 40 / 2);
 	    }
 	}
 
