@@ -1,5 +1,8 @@
 package OOP.SnakeGame;
-
+/*
+ * just a point in the grid 
+ * defined by row and col
+ */
 public class Point {
 	int row;
 	int col;

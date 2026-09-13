@@ -3,7 +3,11 @@ package OOP.SnakeGame;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 
@@ -13,28 +17,37 @@ public class GamePanel extends JPanel {
 	private Grid grid;
 	private Snake snake;
 	private Food food;
-
-	public GamePanel(Grid grid, Snake snake, Food food) {
+	private Image backgroundImage;
+	private Image foodImage;
+	
+	public GamePanel(Grid grid, Snake snake, Food food) throws IOException {
 	    this.grid = grid;
 	    this.snake = snake;
 	    this.food = food;
+	    
+	    backgroundImage = ImageIO.read(new File("imgs/background.png"));
+	    foodImage = ImageIO.read(new File("imgs/apple.png"));
+	    
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-	    super.paintComponent(g);
+		super.paintComponent(g);
+		
+		g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
+		
 	    int cellSize = 40; 
 	    
 	    for (int i = 0; i < grid.getHeight(); i++) {
 	        for (int j = 0; j < grid.getWidth(); j++) {
-	            if (snake.isAt(i, j))
-	                g.setColor(Color.GREEN);
-	            else if (food.getPosition().getRow() == i && food.getPosition().getCol() == j)
-	                g.setColor(Color.RED);
-	            else
+	            if (snake.isAt(i, j)) {
 	                g.setColor(Color.BLACK);
+	            	g.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+	            }
+	            else if (food.getPosition().getRow() == i && food.getPosition().getCol() == j)
+	            	g.drawImage(foodImage, j * cellSize, i * cellSize, cellSize, cellSize, null);
+	            else continue;
 
-	            g.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
 	        }
 	    }
 	    if (!snake.isAlive(grid)) {

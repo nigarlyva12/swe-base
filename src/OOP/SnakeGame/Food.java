@@ -13,8 +13,8 @@ public class Food {
 	
 	public void respawn(Grid grid) {
 		int lower_bound = 1;
-		int random_col = (int) (Math.random()*(grid.getWidth()-lower_bound)+lower_bound);
-		int random_row = (int) (Math.random()*(grid.getHeight()-lower_bound)+lower_bound);
+		int random_col = (int) (Math.random()*(grid.getWidth()-2)+lower_bound);
+		int random_row = (int) (Math.random()*(grid.getHeight()-2)+lower_bound);
 		
 		position = new Point(random_row, random_col);
 	}

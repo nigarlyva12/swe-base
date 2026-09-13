@@ -6,9 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Game {
@@ -20,7 +23,7 @@ public class Game {
 	private GamePanel panel;
 	private JButton resetButton;
 	
-	public Game() {
+	public Game() throws IOException {
 		grid = new Grid(20,16);
 		snake = new Snake(3,3);
 		food = new Food(new Point(2,2));
@@ -37,10 +40,17 @@ public class Game {
 	    frame.add(resetButton, BorderLayout.SOUTH);
 	    panel.setPreferredSize(new Dimension(800, 640));
 	    frame.pack();
+	    frame.setLocationRelativeTo(null);
+	    ((JPanel)frame.getContentPane()).setBorder(BorderFactory.createEmptyBorder());
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setVisible(true);
+	    frame.setResizable(false);
 	}
 	
+	/**
+	 * timer fires every 300ms automatically
+	 * when user clicks w/a/s/d buttons, it will refire and set the direction new
+	 */
 	public void start() {
 		timer = new Timer(300, e -> {
 			snake.move();

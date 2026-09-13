@@ -11,12 +11,19 @@ public class Snake {
 		body.add(new Point(row, col));
 		direction = Direction.RIGHT; //default
 	}
-	
+	/**
+	 * this method moves the snake by 
+	 * adding a new point to the head of snake
+	 * and removing the tail to keep the size consistent
+	 */
 	public void move() {
 		grow();
 		body.removeLast();
 	}
 	
+	/**
+	 * this method helps to grow the size of the snake
+	 */
 	public void grow() {
 		Point head = body.getFirst();
 		
@@ -32,6 +39,13 @@ public class Snake {
 		body.addFirst(new Point(current_row, current_col));
 	}
 	
+	/**
+	 * the snake is alive when it is
+	 * inside the grid boundaries
+	 * and when it is not trying to eat itself :D
+	 * @param grid
+	 * @return
+	 */
 	public boolean isAlive(Grid grid) {
 		Point head = body.getFirst();
 		
@@ -45,7 +59,13 @@ public class Snake {
 		}
 		return true;
 	}
-	
+	/**
+	 * this method helps us to define the current 
+	 * location of the snake
+	 * @param row
+	 * @param col
+	 * @return
+	 */
 	public boolean isAt(int row, int col) {
 		for(int i=0; i<body.size(); i++) {
 			if(body.get(i).getCol() == col && body.get(i).getRow() == row) {
@@ -61,7 +81,7 @@ public class Snake {
 	public Direction getDirection() {
 		return direction;
 	}
-
+	
 	public void setDirection(Direction newDirection) {
 		if(newDirection == Direction.DOWN && this.direction == Direction.UP)
 			return;
