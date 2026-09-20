@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 public class Main {
 
@@ -16,11 +17,22 @@ public class Main {
 		HashMap<String,Integer> hm = wc.countFrequencyOfEachWord(wordList);
 		
 		WordAnalyzer wa = new WordAnalyzer();
-		List<Integer> result = wa.sort(hm);
+		List<Entry<String, Integer>> result = wa.sort(hm);
 		
-		for(Integer i : result) {
+//		for(Entry<String, Integer> i : result) {
+//			System.out.println(i+" ");
+//		}
+//		
+//		Integer res = wa.linearSearch(hm, "the");
+//		if(res == -1) {
+//			System.out.println("target not found");
+//		}else 
+//			System.out.println("Element is present at index "+res);
+		
+		for(Entry<String, Integer> i : wa.topN(hm, 3)) {
 			System.out.println(i+" ");
 		}
+		
 	}
 
 }
